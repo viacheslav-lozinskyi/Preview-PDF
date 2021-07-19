@@ -10,7 +10,7 @@ namespace resource.preview
     {
         protected override void _Execute(atom.Trace context, int level, string url, string file)
         {
-            var a_Name = GetUrlPreview(file, ".png");
+            var a_Name = atom.Trace.GetUrlPreview(file, ".png");
             {
                 context.
                     SetAlignment(NAME.ALIGNMENT.TOP).
@@ -84,18 +84,18 @@ namespace resource.preview
                 {
                     if (i == a_Size2)
                     {
-                        a_Result += (CONSTANT.OUTPUT_PREVIEW_PAGE_BREAK * a_Context.Height) / 100;
+                        a_Result += (CONSTANT.OUTPUT.PREVIEW_PAGE_BREAK * a_Context.Height) / 100;
                     }
                     else
                     {
-                        a_Result += ((a_Size1 * a_Context.Height) / a_Context.Width) + CONSTANT.OUTPUT_PREVIEW_PAGE_INDENT;
+                        a_Result += ((a_Size1 * a_Context.Height) / a_Context.Width) + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT;
                     }
                 }
                 {
                     a_Context.Dispose();
                 }
             }
-            return Math.Max(a_Result - CONSTANT.OUTPUT_PREVIEW_PAGE_INDENT, 0);
+            return Math.Max(a_Result - CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT, 0);
         }
 
         private static void __Execute(atom.Trace context, int level, PdfDocument data, string urlProxy)
@@ -124,7 +124,7 @@ namespace resource.preview
                             a_Context1.DrawRectangle(new Pen(Color.Black, 1), a_Size);
                         }
                         {
-                            a_Index += a_Size.Height + CONSTANT.OUTPUT_PREVIEW_PAGE_INDENT;
+                            a_Index += a_Size.Height + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT;
                         }
                     }
                     {
@@ -136,9 +136,9 @@ namespace resource.preview
                 a_Context.Save(urlProxy, ImageFormat.Png);
             }
             {
-                var a_Size = (a_Context.Height + CONSTANT.OUTPUT_PREVIEW_ITEM_HEIGHT) / (CONSTANT.OUTPUT_PREVIEW_ITEM_HEIGHT + 1);
+                var a_Size = (a_Context.Height + CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT) / (CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + 1);
                 {
-                    a_Size = Math.Max(a_Size, CONSTANT.OUTPUT_PREVIEW_MIN_SIZE);
+                    a_Size = Math.Max(a_Size, CONSTANT.OUTPUT.PREVIEW_MIN_SIZE);
                 }
                 for (var i = 0; i < a_Size; i++)
                 {
