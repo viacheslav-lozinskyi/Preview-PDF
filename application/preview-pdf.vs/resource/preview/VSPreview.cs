@@ -72,32 +72,6 @@ namespace resource.preview
             }
         }
 
-        private static int __GetSizeY(PdfDocument data)
-        {
-            var a_Result = 0;
-            var a_Size1 = GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
-            var a_Size2 = GetProperty(NAME.PROPERTY.PREVIEW_DOCUMENT_SIZE, true);
-            for (var i = 0; (i < data.PageCount) && (i <= a_Size2); i++)
-            {
-                var a_Context = data.Render(i, 24, 24, true);
-                if ((a_Context.Width > 0) && (a_Context.Height > 0))
-                {
-                    if (i == a_Size2)
-                    {
-                        a_Result += (CONSTANT.OUTPUT.PREVIEW_PAGE_BREAK * a_Context.Height) / 100;
-                    }
-                    else
-                    {
-                        a_Result += ((a_Size1 * a_Context.Height) / a_Context.Width) + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT;
-                    }
-                }
-                {
-                    a_Context.Dispose();
-                }
-            }
-            return Math.Max(a_Result - CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT, 0);
-        }
-
         private static void __Execute(atom.Trace context, int level, PdfDocument data, string urlProxy)
         {
             var a_Size1 = GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
@@ -136,7 +110,7 @@ namespace resource.preview
                 a_Context.Save(urlProxy, ImageFormat.Png);
             }
             {
-                var a_Size = (a_Context.Height + CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT) / (CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + 1);
+                var a_Size = (a_Context.Height + CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT) / (CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + 1);
                 {
                     a_Size = Math.Max(a_Size, CONSTANT.OUTPUT.PREVIEW_MIN_SIZE);
                 }
@@ -162,6 +136,32 @@ namespace resource.preview
                     }
                 }
             }
+        }
+
+        private static int __GetSizeY(PdfDocument data)
+        {
+            var a_Result = 0;
+            var a_Size1 = GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
+            var a_Size2 = GetProperty(NAME.PROPERTY.PREVIEW_DOCUMENT_SIZE, true);
+            for (var i = 0; (i < data.PageCount) && (i <= a_Size2); i++)
+            {
+                var a_Context = data.Render(i, 24, 24, true);
+                if ((a_Context.Width > 0) && (a_Context.Height > 0))
+                {
+                    if (i == a_Size2)
+                    {
+                        a_Result += (CONSTANT.OUTPUT.PREVIEW_PAGE_BREAK * a_Context.Height) / 100;
+                    }
+                    else
+                    {
+                        a_Result += ((a_Size1 * a_Context.Height) / a_Context.Width) + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT;
+                    }
+                }
+                {
+                    a_Context.Dispose();
+                }
+            }
+            return Math.Max(a_Result - CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT, 0);
         }
     };
 }
