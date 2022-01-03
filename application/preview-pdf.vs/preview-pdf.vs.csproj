@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MetaOutput.Client">
-      <Version>1.0.2</Version>
+      <Version>1.0.3</Version>
     </PackageReference>
     <PackageReference Include="PdfiumViewer">
       <Version>2.13.0</Version>
@@ -56,8 +56,14 @@
     <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa">
       <Version>2018.4.8.256</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.ImageCatalog">
+      <Version>15.0.26606</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.15.0">
       <Version>15.0.26606</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime">
+      <Version>14.3.26929</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <Version>17.0.2150-preview2</Version>
@@ -66,6 +72,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
