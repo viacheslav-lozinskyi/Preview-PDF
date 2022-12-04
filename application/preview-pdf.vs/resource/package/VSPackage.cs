@@ -24,7 +24,7 @@ namespace resource.package
             public const string DESCRIPTION = "Quick preview of PDF files";
             public const string GUID = "8880D524-B13D-477D-A163-FCC78B900033";
             public const string NAME = "Preview-PDF";
-            public const string VERSION = "1.0.5";
+            public const string VERSION = "1.0.6";
         }
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

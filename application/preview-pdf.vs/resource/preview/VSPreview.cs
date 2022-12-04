@@ -17,16 +17,16 @@ namespace resource.preview
                     SetFontState(NAME.FONT_STATE.BLINK).
                     SetProgress(NAME.PROGRESS.INFINITE).
                     SetUrlPreview(a_Name).
-                    SendPreview(NAME.TYPE.INFO, url);
+                    SendPreview(NAME.EVENT.INFO, url);
             }
             {
                 var a_Context = PdfDocument.Load(file);
                 {
-                    context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.HEADER, level, "[[[Info]]]");
+                    context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.HEADER, level, "[[[Info]]]");
                     {
-                        context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 1, "[[[File Name]]]", url);
-                        context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 1, "[[[File Size]]]", (new FileInfo(file)).Length.ToString());
-                        context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 1, "[[[Raw Format]]]", "PDF");
+                        context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 1, "[[[File Name]]]", url);
+                        context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 1, "[[[File Size]]]", (new FileInfo(file)).Length.ToString());
+                        context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 1, "[[[Raw Format]]]", "PDF");
                     }
                 }
                 {
@@ -34,24 +34,24 @@ namespace resource.preview
                 }
                 if (a_Context.PageCount > GetProperty(NAME.PROPERTY.PREVIEW_DOCUMENT_SIZE, true))
                 {
-                    context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.WARNING, level, "...");
+                    context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.WARNING, level, "...");
                 }
                 {
-                    context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.FOOTER, level, "[[[Pages]]]: " + a_Context.PageCount.ToString());
+                    context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.FOOTER, level, "[[[Pages]]]: " + a_Context.PageCount.ToString());
                     {
-                        context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.FOLDER, level + 1, "[[[Header]]]");
+                        context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.FOLDER, level + 1, "[[[Header]]]");
                         {
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Author]]]", a_Context.GetInformation()?.Author.ToString());
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Creator]]]", a_Context.GetInformation()?.Creator.ToString());
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Keywords]]]", a_Context.GetInformation()?.Keywords.ToString());
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Producer]]]", a_Context.GetInformation()?.Producer.ToString());
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Subject]]]", a_Context.GetInformation()?.Subject.ToString());
-                            context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level + 2, "[[[Title]]]", a_Context.GetInformation()?.Title.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Author]]]", a_Context.GetInformation()?.Author.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Creator]]]", a_Context.GetInformation()?.Creator.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Keywords]]]", a_Context.GetInformation()?.Keywords.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Producer]]]", a_Context.GetInformation()?.Producer.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Subject]]]", a_Context.GetInformation()?.Subject.ToString());
+                            context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level + 2, "[[[Title]]]", a_Context.GetInformation()?.Title.ToString());
                         }
                     }
                     if (a_Context.Bookmarks?.Count > 0)
                     {
-                        context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.FOLDER, level + 1, "[[[Bookmarks]]]");
+                        context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.FOLDER, level + 1, "[[[Bookmarks]]]");
                         {
                             __Execute(context, level + 2, a_Context.Bookmarks);
                         }
@@ -68,7 +68,7 @@ namespace resource.preview
                     SetFontState(NAME.FONT_STATE.NONE).
                     SetProgress(100).
                     SetUrlPreview(a_Name).
-                    SendPreview(NAME.TYPE.INFO, url);
+                    SendPreview(NAME.EVENT.INFO, url);
             }
         }
 
@@ -116,7 +116,7 @@ namespace resource.preview
                 }
                 for (var i = 0; i < a_Size; i++)
                 {
-                    context.Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PREVIEW, level);
+                    context.Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PREVIEW, level);
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace resource.preview
                 {
                     context.
                         SetComment("[[[Page]]]: " + (a_Context.PageIndex + 1).ToString(), "[[[Page index]]]").
-                        Send(NAME.SOURCE.PREVIEW, NAME.TYPE.PARAMETER, level, a_Context.Title);
+                        Send(NAME.SOURCE.PREVIEW, NAME.EVENT.PARAMETER, level, a_Context.Title);
                     if (a_Context.Children?.Count > 0)
                     {
                         __Execute(context, level + 1, a_Context.Children);
