@@ -8,16 +8,19 @@
 
 ---
 
+## Important information:
 [![MetaOutput](https://www.metaoutput.net/_functions/watch?utm_source=github.com&utm_medium=referral&utm_campaign=view-on-github&utm_content=Preview-PDF&source=GITHUB&size=128x128&project=Preview-PDF&url=https://github.com/viacheslav-lozinskyi/Preview-PDF)](https://www.metaoutput.net/)
 
-### This extension is working only with installed [MetaOutput](https://www.metaoutput.net/) extension!
+This extension is working only with installed [MetaOutput](https://www.metaoutput.net/) extension!
 
 ---
 
-### Now you can look inside [PDF](https://en.wikipedia.org/wiki/PDF) file not opening it.
+## Description:
+Now you can look inside [PDF](https://en.wikipedia.org/wiki/PDF) file not opening it.
 
 ---
 
+## How it works:
 ![Image](https://viacheslav-lozinskyi.github.io/Preview-PDF/resource/video/Presentation1.gif)
 
 ---
