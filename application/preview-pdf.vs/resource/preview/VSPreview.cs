@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.Imaging;
 using PdfiumViewer;
 using System;
 using System.Drawing;
@@ -107,7 +108,7 @@ namespace resource.preview
                 }
             }
             {
-                a_Context.Save(urlProxy, ImageFormat.Png);
+                a_Context.Save(urlProxy, System.Drawing.Imaging.ImageFormat.Png);
             }
             {
                 var a_Count = (a_Context.Height + CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT + CONSTANT.OUTPUT.PREVIEW_PAGE_INDENT) / (CONSTANT.OUTPUT.PREVIEW_ITEM_HEIGHT + 1);
