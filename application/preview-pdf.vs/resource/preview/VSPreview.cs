@@ -75,7 +75,7 @@ namespace resource.preview
 
         private static void __Execute(atom.Trace context, int level, PdfDocument data, string urlProxy)
         {
-            var a_Size1 = GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
+            var a_Size1 = 1000;// GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
             var a_Size2 = GetProperty(NAME.PROPERTY.PREVIEW_DOCUMENT_SIZE, true);
             var a_Context = new Bitmap(a_Size1, __GetSizeY(data), PixelFormat.Format32bppArgb);
             {
@@ -141,7 +141,7 @@ namespace resource.preview
         private static int __GetSizeY(PdfDocument data)
         {
             var a_Result = 0;
-            var a_Size1 = GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
+            var a_Size1 = 1000;// GetProperty(NAME.PROPERTY.PREVIEW_WIDTH, true);
             var a_Size2 = GetProperty(NAME.PROPERTY.PREVIEW_DOCUMENT_SIZE, true);
             for (var i = 0; (i < data.PageCount) && (i <= a_Size2); i++)
             {
