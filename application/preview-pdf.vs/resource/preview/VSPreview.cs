@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.Imaging;
 using PdfiumViewer;
 using System;
 using System.Drawing;
