@@ -10,12 +10,12 @@ namespace resource.preview
     {
         protected override void _Execute(atom.Trace context, int level, string url, string file)
         {
-            var a_Name = atom.Trace.GetUrlPreview(file, ".png");
+            var a_Name = atom.Trace.GetUrlTemp(file, ".png");
             {
                 context.
                     SetAlignment(NAME.ALIGNMENT.TOP).
-                    SetFontState(NAME.FONT_STATE.BLINK).
-                    SetProgress(NAME.PROGRESS.INFINITE).
+                    SetTrace(null, NAME.STATE.TRACE.BLINK).
+                    SetProgress(CONSTANT.PROGRESS.INFINITE).
                     SetUrlPreview(a_Name).
                     SendPreview(NAME.EVENT.INFO, url);
             }
@@ -65,7 +65,7 @@ namespace resource.preview
             {
                 context.
                     SetAlignment(NAME.ALIGNMENT.TOP).
-                    SetFontState(NAME.FONT_STATE.NONE).
+                    SetFont(null, 0, NAME.STATE.FONT.NONE).
                     SetProgress(100).
                     SetUrlPreview(a_Name).
                     SendPreview(NAME.EVENT.INFO, url);
